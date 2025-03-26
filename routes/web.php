@@ -13,7 +13,7 @@ Route::get('/register', function () {
     return view('register');
 })->name('register');
 
-//-------------------------------------------------------------------//
+//----------------------------------USER--------------------------------------//
 
 Route::match(['get', 'post'],'/userhomepage', function () {
         return view('customer.userhomepage');
@@ -36,7 +36,7 @@ Route::match(['get', 'post'],'/orderstatuspage', function () {
     })->name('orderstatuspage'); 
 
 
-//-------------------------------------------------------------------//
+//---------------------------------VENDOR------------------------------------//
 
 Route::get('/vendorhomepage', function () {
     return view('vendor.vendorhomepage');
@@ -55,7 +55,7 @@ Route::match(['get', 'post'],'/addfooditempage', function () {
 })->name('addfooditempage'); 
 
 
-//-------------------------------------------------------------------//
+//---------------------------------RIDER-------------------------------------//
 
 Route::get('/riderhomepage', function () {
     return view('rider.riderhomepage');
