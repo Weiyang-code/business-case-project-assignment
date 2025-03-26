@@ -2,16 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/login', function () {
-//     return view('login');
-// })->name('login');
 
 Route::get('/', function () {
     return view('login');
 });
 
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
-Route::get('/userhomepage', function () {
+Route::match(['get', 'post'],'/userhomepage', function () {
         return view('userhomepage');
     })->name('userhomepage');
 

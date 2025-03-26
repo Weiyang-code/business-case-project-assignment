@@ -58,7 +58,8 @@
             <button type="button" class="btn role-btn" onclick="setRole(this)">Rider</button>
         </div>
 
-        <form action="login.php" method="POST">
+        <form action="{{ route('userhomepage') }}" method="POST">
+        @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Email Address</label>
                 <input type="email" class="form-control" id="email" name="email" required>
@@ -86,6 +87,7 @@
             </div>
         </form>
     </div>
+
 
     <script>
         function setRole(button) {
