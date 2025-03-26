@@ -41,51 +41,7 @@
 <body class="d-flex flex-column justify-content-center align-items-center vh-100 bg-light">
 
     <!-- Banner Section (Now with Background Image) -->
-    <div class="banner">
-        <img src="C:/Users/WeiYang/food_banner.png" class="banner-img">
-        
-    </div>
-
-    <!-- Login Card -->
-    <div class="card shadow p-4 mt-3" style="width: 350px;">
-        <h3 class="text-center mb-3">Login</h3>
-
-        <!-- Role Selection Buttons with Spacing -->
-        <div class="d-flex justify-content-between gap-2 mb-3">
-            <button type="button" class="btn role-btn active" onclick="setRole(this)">User</button>
-            <button type="button" class="btn role-btn" onclick="setRole(this)">Vendor</button>
-            <button type="button" class="btn role-btn" onclick="setRole(this)">Rider</button>
-        </div>
-
-        <form action="login.php" method="POST">
-            <div class="mb-3">
-                <label for="email" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="rememberMe" name="remember">
-                <label class="form-check-label" for="rememberMe">Remember Me</label>
-            </div>
-
-            <button type="submit" class="btn btn-primary w-100">Login</button>
-
-            <div class="text-center mt-3">
-                <a href="#">Forgot Password?</a>
-            </div>
-
-            <!-- Register Button (Now Inside the Card) -->
-            <div class="text-center mt-3">
-                <a href="register.php" class="btn btn-outline-secondary w-100">Register</a>
-            </div>
-        </form>
-    </div>
-
+    
     <script>
         function setRole(button) {
             document.querySelectorAll('.role-btn').forEach(btn => btn.classList.remove('active'));

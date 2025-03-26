@@ -39,11 +39,6 @@
     </style>
 </head>
 <body class="d-flex flex-column justify-content-center align-items-center vh-100 bg-light">
-    
-<form action="{{ route('login') }}" method="POST">
-    @csrf
-    <button type="submit" class="btn btn-primary w-100">Login</button>
-</form>
 
 
     <!-- Banner Section (Now with Background Image) -->
