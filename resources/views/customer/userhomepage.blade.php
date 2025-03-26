@@ -138,7 +138,7 @@
     </header>
 
     <section class="hero">
-        <h1>CHECK OUT OUR MENU</h1>
+        <h1>CHECK OUT OUR FOOD</h1>
         <p>AND PLACE AN ORDER EASILY</p>
     </section>
 
