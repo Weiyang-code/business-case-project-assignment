@@ -48,6 +48,17 @@
     </div>
 
     <!-- Login Card -->
+     <!-- show error -->
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <div class="card shadow p-4 mt-3" style="width: 350px;">
         <h3 class="text-center mb-3">Login</h3>
 
@@ -58,7 +69,7 @@
             <button type="button" class="btn role-btn" onclick="setRole(this)">Rider</button>
         </div>
 
-        <form action="{{ route('userhomepage') }}" method="POST">
+        <form action="{{ route('login') }}" method="POST">
         @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Email Address</label>
