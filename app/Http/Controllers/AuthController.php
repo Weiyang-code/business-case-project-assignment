@@ -28,7 +28,15 @@ class AuthController extends Controller
         if ($user) {
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
-                return redirect()->intended('userhomepage');
+                
+                switch ($selectedRole) {
+                    case 'Vendor':
+                        return redirect()->intended('vendorhomepage');
+                    case 'Rider':
+                        return redirect()->intended('riderhomepage');
+                    default: // Default to User
+                        return redirect()->intended('userhomepage');
+                }
             } else {
                 return back()->withErrors([
                     'password' => 'The provided password is incorrect.',

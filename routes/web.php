@@ -18,6 +18,11 @@ Route::post('/set-role', function (Request $request) {
     return response()->json(['message' => 'Role set successfully']);
 })->name('set-role');
 
+// get login role of the session
+Route::get('/get-role', function (Request $request) {
+    return response()->json(['role' => $request->session()->get('selected_role', 'User')]);
+})->name('get-role');
+
 //for register role
 Route::post('/set-session-role', function (Request $request) {
     session(['role' => $request->role]);

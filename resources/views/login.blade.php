@@ -57,6 +57,22 @@
 @endsection
 @section('scripts')
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Set default role to "User" on first load
+        const defaultRole = "User";
+
+        // Check if the session already has a role set
+        fetch("{{ route('get-role') }}")
+            .then(response => response.json())
+            .then(data => {
+                if (!data.role) {
+                    // No role set? Store "User" in session
+                    setRole(document.querySelector('.role-btn[data-role="User"]'));
+                }
+            })
+            .catch(error => console.error("Error fetching role:", error));
+    });
+    
     function setRole(button) {
         document.querySelectorAll('.role-btn').forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
