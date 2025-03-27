@@ -1,22 +1,45 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
+
+
+
+//checking session route
+Route::get('/session', function (Request $request) {
+    return $request->session()->all();
+});
+
+//setting login role in session
+Route::post('/set-role', function (Request $request) {
+    $request->session()->put('selected_role', $request->input('role'));
+    return response()->json(['message' => 'Role set successfully']);
+})->name('set-role');
+
+//for register role
+Route::post('/set-session-role', function (Request $request) {
+    session(['role' => $request->role]);
+    return response()->json(['success' => true]);
+})->name('set.session.role');
+
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 
 
 Route::get('/', function () {
     return view('login');
 });
-
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
+Route::get('/logout', function (Request $request) {
+    $request->session()->flush();
+    return redirect('/');
+})->name('logout');
 
 
-// Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
 
 //----------------------------------USER--------------------------------------//
 

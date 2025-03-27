@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
             padding: 0;
             background-color: #f8f8f8;
         }
+
         header {
             background: #222;
             padding: 15px 0;
@@ -21,6 +23,7 @@
             left: 0;
             z-index: 1000;
         }
+
         nav {
             display: flex;
             justify-content: space-between;
@@ -28,31 +31,37 @@
             width: 80%;
             margin: auto;
         }
+
         .logo {
             font-size: 24px;
             color: #fff;
             font-weight: bold;
         }
+
         nav ul {
             list-style: none;
             display: flex;
             gap: 20px;
         }
+
         nav ul li a {
             text-decoration: none;
             color: #fff;
             font-size: 16px;
             transition: 0.3s;
         }
+
         nav ul li a:hover {
             color: #ff6347;
         }
+
         .order-btn {
             background: #ff6347;
             padding: 10px 15px;
             border-radius: 5px;
             font-weight: bold;
         }
+
         .hero {
             background: url("{{ asset('images/bighome.jpg') }}") center/cover no-repeat;
             height: 80vh;
@@ -71,6 +80,7 @@
             gap: 20px;
             padding: 50px 10%;
         }
+
         .offer-box {
             flex: 1;
             position: relative;
@@ -78,13 +88,16 @@
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
+
         .offer-box img {
             width: 100%;
             transition: 0.3s;
         }
+
         .offer-box:hover img {
             transform: scale(1.05);
         }
+
         .overlay {
             position: absolute;
             bottom: 0;
@@ -94,6 +107,7 @@
             text-align: center;
             padding: 20px;
         }
+
         .btn {
             display: inline-block;
             padding: 10px 15px;
@@ -104,11 +118,13 @@
             font-weight: bold;
             margin-top: 10px;
         }
+
         .info-section {
             display: flex;
             gap: 20px;
             padding: 50px 10%;
         }
+
         .info-box {
             flex: 1;
             height: 200px;
@@ -124,6 +140,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <nav>
@@ -133,6 +150,7 @@
                 <li><a href="#menu">Menus</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#order" class="order-btn">Order Now</a></li>
+                <li><a href="{{ route('logout') }}" class="order-btn">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -170,4 +188,5 @@
         <div class="info-box" style="background-image: url('contact-us.jpg');">CONTACT US</div>
     </section>
 </body>
+
 </html>
