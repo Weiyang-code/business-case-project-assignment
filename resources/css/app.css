@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -9,4 +9,23 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+.banner {
+    background: url('/path-to-your-image.jpg') center/cover no-repeat;
+    min-height: 500px; /* Increased height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 20px; /* Adds padding for better spacing */
+}
+
+.banner h1 {
+    font-size: 3rem; /* Increase title size */
+    font-weight: bold;
+}
+
+.banner p {
+    font-size: 1.5rem; /* Increase subtitle size */
 }

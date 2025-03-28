@@ -19,7 +19,7 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        $selectedRole = $request->session()->get('selected_role');
+        $selectedRole = $request->session()->get('selected_role', 'User');
 
         $user = User::where('email', $credentials['email'])
             ->where('role', $selectedRole)
@@ -28,7 +28,7 @@ class AuthController extends Controller
         if ($user) {
             if (Auth::attempt($credentials)) {
                 $request->session()->regenerate();
-                
+
                 switch ($selectedRole) {
                     case 'Vendor':
                         return redirect()->intended('vendorhomepage');
@@ -43,6 +43,7 @@ class AuthController extends Controller
                 ])->onlyInput('email');
             }
         } else {
+            $request->session()->flush();
             return back()->withErrors([
                 'role' => 'No account found with the selected role. Try again or register',
             ])->onlyInput('email');

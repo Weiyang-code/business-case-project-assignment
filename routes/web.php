@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
@@ -38,12 +39,13 @@ Route::get('/', function () {
 });
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-Route::get('/logout', function (Request $request) {
-    $request->session()->flush();
+
+Route::post('/logout', function (Request $request) {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
     return redirect('/');
 })->name('logout');
-
-
 
 
 //----------------------------------USER--------------------------------------//
