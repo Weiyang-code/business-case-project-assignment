@@ -1,5 +1,2 @@
-<html>
-    <body>
-        <p>testing rider home page</p>
-    </body>
-</html>
+@extends('layouts.app')
+@section('title', 'Rider Home Page')
