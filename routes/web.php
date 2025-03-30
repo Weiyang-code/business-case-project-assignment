@@ -58,10 +58,10 @@ Route::match(['get', 'post'], '/userhomepage', function () {
 })->name('userhomepage');
 
 Route::get('/menupage', [MenuController::class, 'showMenuPage'])->name('menupage');
-
+Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
 Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
-
-
+Route::post('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');
+Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 
 // Route::get('/menupage', function () {
 //     return view('customer.menupage');

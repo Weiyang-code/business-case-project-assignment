@@ -18,8 +18,20 @@
                     <a class="nav-link {{ Request::is('pricing') ? 'active' : '' }}" href="#">Pricing</a>
                 </li>
             </ul>
-           
-            <div class="navbar-text mt-1">
+
+            <div class="d-flex align-items-center">
+                <!-- Cart Icon -->
+                <a href="{{ route('cart.view') }}" class="nav-link position-relative me-3">
+                    <i class="fas fa-shopping-cart fa-lg"></i>
+                    @php
+                    $cartCount = \App\Models\Cart::where('user_id', auth()->id())->sum('quantity');
+                    @endphp
+                    @if($cartCount > 0)
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{ $cartCount }}
+                    </span>
+                    @endif
+                </a>
                 @auth
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
