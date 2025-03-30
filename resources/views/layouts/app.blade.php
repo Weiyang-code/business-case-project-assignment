@@ -77,6 +77,83 @@
             bottom: 30;
         }
 
+        .btn-menu {
+            background-color: #101c0c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .menu-banner {
+            background: url("{{ asset('images/mealbox_banner.jpg') }}") center/cover no-repeat;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+            padding: 100px 5%;
+            position: relative;
+            color: white;
+        }
+
+        .menu-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            /* Dark overlay for readability */
+        }
+
+        .menu-banner-content {
+            position: relative;
+            max-width: 50%;
+            z-index: 2;
+        }
+
+        .menu-banner h1 {
+            font-size: 4rem;
+            /* Larger heading */
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .menu-banner p {
+            font-size: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .img-fixed {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .btn-cart {
+            background-color: #101c0c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+
         /* ---- Mobile View (Less than 768px) ---- */
         @media (max-width: 768px) {
             .banner {

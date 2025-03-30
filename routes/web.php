@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\MenuController;
 
 
 
@@ -50,25 +53,35 @@ Route::post('/logout', function (Request $request) {
 
 //----------------------------------USER--------------------------------------//
 
-Route::match(['get', 'post'],'/userhomepage', function () {
-        return view('customer.userhomepage');
-    })->name('userhomepage');
+Route::match(['get', 'post'], '/userhomepage', function () {
+    return view('customer.userhomepage');
+})->name('userhomepage');
 
-Route::match(['get', 'post'],'/restaurantpage', function () {
-        return view('customer.restaurantpage');
-    })->name('restaurantpage');    
+Route::get('/menupage', [MenuController::class, 'showMenuPage'])->name('menupage');
 
-Route::match(['get', 'post'],'/cartpage', function () {
-        return view('customer.cartpage');
-    })->name('cartpage'); 
+Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
 
-Route::match(['get', 'post'],'/paymentpage', function () {
-        return view('customer.paymentpage');
-    })->name('paymentpage'); 
 
-Route::match(['get', 'post'],'/orderstatuspage', function () {
-        return view('customer.orderstatuspage');
-    })->name('orderstatuspage'); 
+
+// Route::get('/menupage', function () {
+//     return view('customer.menupage');
+// })->name('menupage');
+
+// Route::match(['get', 'post'],'/restaurantpage', function () {
+//         return view('customer.restaurantpage');
+//     })->name('restaurantpage');    
+
+// Route::match(['get', 'post'],'/cartpage', function () {
+//         return view('customer.cartpage');
+//     })->name('cartpage'); 
+
+// Route::match(['get', 'post'],'/paymentpage', function () {
+//         return view('customer.paymentpage');
+//     })->name('paymentpage'); 
+
+// Route::match(['get', 'post'],'/orderstatuspage', function () {
+//         return view('customer.orderstatuspage');
+//     })->name('orderstatuspage'); 
 
 
 //---------------------------------VENDOR------------------------------------//
@@ -77,17 +90,17 @@ Route::get('/vendorhomepage', function () {
     return view('vendor.vendorhomepage');
 })->name('vendorhomepage');
 
-Route::match(['get', 'post'],'/orderacceptpage', function () {
+Route::match(['get', 'post'], '/orderacceptpage', function () {
     return view('vendor.orderacceptpage');
-})->name('orderacceptpage');    
+})->name('orderacceptpage');
 
-Route::match(['get', 'post'],'/vendorstatuspage', function () {
+Route::match(['get', 'post'], '/vendorstatuspage', function () {
     return view('vendor.vendorstatuspage');
-})->name('vendorstatuspage'); 
+})->name('vendorstatuspage');
 
-Route::match(['get', 'post'],'/addfooditempage', function () {
+Route::match(['get', 'post'], '/addfooditempage', function () {
     return view('vendor.addfooditempage');
-})->name('addfooditempage'); 
+})->name('addfooditempage');
 
 
 //---------------------------------RIDER-------------------------------------//
@@ -107,4 +120,3 @@ Route::get('/riderstatuspage', function () {
 Route::get('/commissionpage', function () {
     return view('rider.commissionpage');
 })->name('commissionpage');
-
