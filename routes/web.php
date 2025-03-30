@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MenuController;
-
+use App\Http\Controllers\OrderController;
 
 
 //checking session route
@@ -108,6 +108,8 @@ Route::match(['get', 'post'], '/addfooditempage', function () {
 Route::get('/riderhomepage', function () {
     return view('rider.riderhomepage');
 })->name('riderhomepage');
+
+Route::get('/riderhomepage', [OrderController::class, 'showOrders'])->name('rider.riderhomepage');
 
 Route::get('/orderdetailpage', function () {
     return view('rider.orderdetailpage');
