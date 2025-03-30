@@ -2,16 +2,19 @@
 
 @section('content')
 <div class="container my-4">
-    <h2 class="text-center mb-4">🛒 Your Shopping Cart</h2>
+    <div class="alert alert-info text-center fw-semibold">
+        🚚 Delivery fee will be calculated at checkout.
+    </div>
+    <h2 class="text-center mb-4 pt-3">🛒 Your Shopping Cart</h2>
 
     @if($cartItems->isEmpty())
     <div class="alert alert-warning text-center">
-        <p>Your cart is empty.</p>
-        <a href="{{ route('menupage') }}" class="btn btn-primary">Browse Menu</a>
+        <p>Your cart is empty</p>
+        <a href="{{ route('menupage') }}" class="btn-menu">Browse Menu</a>
     </div>
     @else
     <div class="table-responsive d-none d-md-block">
-        <table class="table table-hover align-middle">
+        <table class="table table-hover align-middle shadow">
             <thead class="table-dark text-center">
                 <tr>
                     <th>Image</th>
@@ -42,7 +45,7 @@
                         <form action="{{ route('cart.remove', $item->food_id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">🗑 Remove</button>
+                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
                         </form>
                     </td>
                 </tr>
@@ -88,9 +91,9 @@
             Total: RM {{ number_format($cartItems->sum(fn($item) => $item->menu->price * $item->quantity), 2) }}
         </h4>
 
-        <a href="/" class="btn btn-success">
-            
-            Proceed to Checkout <i class="fas fa-arrow-right"></i> 
+        <a href="{{route ('checkout') }}" class="btn btn-success">
+
+            Proceed to Checkout <i class="fas fa-arrow-right"></i>
         </a>
     </div>
     @endif

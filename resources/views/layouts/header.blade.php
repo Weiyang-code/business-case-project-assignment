@@ -39,6 +39,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><a href="{{ route('orders.user') }}" class="dropdown-item">My Orders</a></li>                        </li>
                         <li>
                             <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout

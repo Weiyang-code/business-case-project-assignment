@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CheckoutController;
 
 
 //checking session route
@@ -62,6 +63,14 @@ Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
 Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::post('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');
 Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+Route::get('/orders/{id}', [OrderController::class, 'view'])->name('orders.view');
+Route::get('/orders', [OrderController::class, 'userOrders'])->name('orders.user');
+
+
+
 
 // Route::get('/menupage', function () {
 //     return view('customer.menupage');

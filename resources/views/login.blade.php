@@ -14,8 +14,10 @@
 </div>
 @endif
 
-<div class="container-fluid">
+<div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
     <div class="card shadow p-4 mt-3" style="width: 550px;">
+        <img src="{{ asset('images/food_app_logo.png') }}" alt="Logo" class="mb-3" style="width: 120px;">
+
         <h3 class="text-center mb-3">Login</h3>
 
 
