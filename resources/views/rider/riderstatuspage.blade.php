@@ -3,13 +3,52 @@
 @section('title', 'Rider Status Page')
 
 @section('content')
-    <div class="container mt-5">
-        <h1 class="text-center">Rider Status Page</h1>
+    <style>
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .circle {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-weight: bold;
+            color: white;
+            margin: 0 auto;
+            background-color: gray; /* Default color */
+        }
+
+        .active {
+            background-color: blue !important;
+        }
+
+        #viewReceiptButton {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+        }
+
+        .status-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Rider Status Page</h1>
 
         <!-- Visualization Section -->
         <div class="mt-4">
-            <h2 class="text-center">Delivery Status Visualization</h2>
-            <div class="status-container d-flex justify-content-between">
+            <h2>Delivery Status Visualization</h2>
+            <div class="status-container">
                 <div class="text-center">
                     <div class="circle active" id="circle1">1</div>
                     <p>Preparing Food</p>
@@ -30,42 +69,12 @@
         </div>
 
         <!-- Update Status Button -->
-        <div class="text-center mt-4">
-            <button type="button" id="updateStatusButton" class="btn btn-primary">Update Status</button>
-        </div>
+        <button type="button" id="updateStatusButton" class="btn btn-primary mt-4">Update Status</button>
 
         <!-- View Receipt Button (Hidden Initially) -->
-        <div class="text-center mt-3">
-            <button id="viewReceiptButton" class="btn btn-success" style="display: none;">View Receipt</button>
-        </div>
+        <button id="viewReceiptButton" class="btn btn-success">View Receipt</button>
     </div>
-@endsection
 
-@section('styles')
-    <style>
-        .status-container {
-            margin-top: 30px;
-        }
-
-        .circle {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            font-weight: bold;
-            color: white;
-            background-color: gray; /* Default color */
-        }
-
-        .active {
-            background-color: blue !important;
-        }
-    </style>
-@endsection
-
-@section('scripts')
     <script>
         let currentStep = 1; // Track the current step
 
@@ -92,7 +101,8 @@
 
         // Redirect to commission page when "View Receipt" button is clicked
         document.getElementById('viewReceiptButton').addEventListener('click', function() {
-            window.location.href = '{{ route("commission") }}'; // Update with actual Laravel route name
+            window.location.href = 'commission.html'; // Update with actual commission page URL
         });
     </script>
+
 @endsection

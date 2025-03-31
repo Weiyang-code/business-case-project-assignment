@@ -16,7 +16,7 @@
                 <p><strong>Commission Earned:</strong> $5.00</p>
             </div>
 
-            <a href="{{ route('home') }}" class="btn btn-primary home-btn">Home</a>
+            <a href="{{ route('riderhomepage') }}" class="btn btn-primary home-btn">Home</a>
         </div>
     </div>
 @endsection
