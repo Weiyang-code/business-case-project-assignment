@@ -20,18 +20,22 @@
             </ul>
 
             <div class="d-flex align-items-center">
-                <!-- Cart Icon -->
+                @php
+                $cartCount = auth()->check() && auth()->user()->role === 'user'
+                ? \App\Models\Cart::where('user_id', auth()->id())->sum('quantity')
+                : 0;
+                @endphp
+
+                @if(auth()->check() && auth()->user()->role === 'user')
                 <a href="{{ route('cart.view') }}" class="nav-link position-relative me-3">
                     <i class="fas fa-shopping-cart fa-lg"></i>
-                    @php
-                    $cartCount = \App\Models\Cart::where('user_id', auth()->id())->sum('quantity');
-                    @endphp
                     @if($cartCount > 0)
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         {{ $cartCount }}
                     </span>
                     @endif
                 </a>
+                @endif
                 @auth
                 <div class="dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -39,7 +43,8 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><a href="{{ route('orders.user') }}" class="dropdown-item">My Orders</a></li>                        </li>
+                        <li><a href="{{ route('orders.user') }}" class="dropdown-item">My Orders</a></li>
+                        </li>
                         <li>
                             <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout

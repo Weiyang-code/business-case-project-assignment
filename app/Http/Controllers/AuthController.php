@@ -61,21 +61,21 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'phone' => 'nullable|string|max:15',
         ]);
 
-        // Get role from session
         $role = session('role', 'User'); // Default to 'User' if session is empty
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone, // Save phone number
             'password' => bcrypt($request->password),
             'role' => $role,
         ]);
 
         Auth::login($user);
         session()->forget('role');
-
 
         return redirect()->route('register')->with('success', 'Registration successful! You can now log in.');
     }

@@ -171,6 +171,8 @@
             max-width: 60px;
         }
 
+        
+
         /* ---- Mobile View (Less than 768px) ---- */
         @media (max-width: 768px) {
             .banner {
