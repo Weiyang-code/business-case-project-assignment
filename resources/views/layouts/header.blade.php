@@ -21,12 +21,12 @@
 
             <div class="d-flex align-items-center">
                 @php
-                $cartCount = auth()->check() && auth()->user()->role === 'user'
+                $cartCount = auth()->check() && auth()->user()->role === 'User'
                 ? \App\Models\Cart::where('user_id', auth()->id())->sum('quantity')
                 : 0;
                 @endphp
 
-                @if(auth()->check() && auth()->user()->role === 'user')
+                @if(auth()->check() && auth()->user()->role === 'User')
                 <a href="{{ route('cart.view') }}" class="nav-link position-relative me-3">
                     <i class="fas fa-shopping-cart fa-lg"></i>
                     @if($cartCount > 0)
