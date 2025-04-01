@@ -9,14 +9,14 @@
             <hr>
             <h5>Order Details</h5>
             <div class="commission-details">
-                <p><strong>Order ID:</strong> 12345</p>
-                <p><strong>Customer Name:</strong> John Doe</p>
-                <p><strong>Delivery Address:</strong> 123 Main Street, City, Country</p>
-                <p><strong>Order Amount:</strong> $25.99</p>
-                <p><strong>Commission Earned:</strong> $5.00</p>
+                <p><strong>Order ID:</strong> {{ $order->id }}</p>
+                <p><strong>Customer Name:</strong> {{ $order->customer_name }}</p>
+                <p><strong>Delivery Address:</strong> {{ $order->delivery_address }}</p>
+                <p><strong>Order Amount:</strong> ${{ number_format($order->amount, 2) }}</p>
+                <p><strong>Commission Earned:</strong> ${{ number_format($order->commission, 2) }}</p>
             </div>
 
-            <a href="{{ route('riderhomepage') }}" class="btn btn-primary home-btn">Home</a>
+            <a href="{{ route('rider.riderhomepage') }}" class="btn btn-primary home-btn">Home</a>
         </div>
     </div>
 @endsection

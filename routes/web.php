@@ -122,11 +122,12 @@ Route::get('/riderhomepage', [OrderController::class, 'showOrders'])->name('ride
 
 Route::get('/orderdetailpage/{id}', [OrderController::class, 'riderOrderDetails'])->name('rider.orderdetailpage');
 
-
-Route::get('/riderstatuspage', function () {
-    return view('rider.riderstatuspage');
+Route::get('/riderstatuspage/{id}', function ($id) {
+    return view('rider.riderstatuspage', compact('id'));
 })->name('riderstatuspage');
 
-Route::get('/commissionpage', function () {
-    return view('rider.commissionpage');
+
+Route::get('/commissionpage/{id}', function ($id) {
+    $order = \App\Models\Order::findOrFail($id);
+    return view('rider.commissionpage', compact('order'));
 })->name('commissionpage');

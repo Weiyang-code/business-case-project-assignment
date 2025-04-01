@@ -55,7 +55,7 @@ class OrderController extends Controller
     $order->update(['status' => $request->status]);
 
     // Redirect to the provided URL, or fallback to a default page
-    return redirect($request->input('redirect_url', route('riderstatuspage')))
+    return redirect($request->input('redirect_url'))
         ->with('success', 'Order status updated successfully!');
 }
 

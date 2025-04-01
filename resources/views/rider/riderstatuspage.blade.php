@@ -72,7 +72,7 @@
         <button type="button" id="updateStatusButton" class="btn btn-primary mt-4">Update Status</button>
 
         <!-- View Receipt Button (Hidden Initially) -->
-        <button id="viewReceiptButton" class="btn btn-success">View Receipt</button>
+        <a id="viewReceiptButton" class="btn btn-success" href="{{ route('commissionpage', ['id' => $id]) }}">View Receipt</a>
     </div>
 
     <script>
@@ -99,10 +99,6 @@
             }
         });
 
-        // Redirect to commission page when "View Receipt" button is clicked
-        document.getElementById('viewReceiptButton').addEventListener('click', function() {
-            window.location.href = 'commission.html'; // Update with actual commission page URL
-        });
     </script>
 
 @endsection
