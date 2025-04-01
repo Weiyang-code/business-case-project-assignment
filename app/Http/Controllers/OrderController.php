@@ -17,7 +17,7 @@ class OrderController extends Controller
 
     public function riderOrderDetails($id)
     {
-        $order = Order::with('user')->findOrFail($id);
+        $order = Order::with(['user', 'items.menu'])->findOrFail($id);
         return view('rider.orderdetailpage', compact('order')); // Pass order to view
     }
 
@@ -55,7 +55,7 @@ class OrderController extends Controller
     $order->update(['status' => $request->status]);
 
     // Redirect to the provided URL, or fallback to a default page
-    return redirect($request->input('redirect_url'))
+    return redirect($request->input('redirect_url', url()->previous()))
         ->with('success', 'Order status updated successfully!');
 }
 
