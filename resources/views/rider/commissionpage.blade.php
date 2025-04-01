@@ -12,8 +12,7 @@
                 <p><strong>Order ID:</strong> {{ $order->id }}</p>
                 <p><strong>Customer Name:</strong> {{ $order->customer_name }}</p>
                 <p><strong>Delivery Address:</strong> {{ $order->delivery_address }}</p>
-                <p><strong>Order Amount:</strong> ${{ number_format($order->amount, 2) }}</p>
-                <p><strong>Commission Earned:</strong> ${{ number_format($order->commission, 2) }}</p>
+                <p><strong>Commission Earned:</strong> RM3.00</p>
             </div>
 
             <a href="{{ route('rider.riderhomepage') }}" class="btn btn-primary home-btn">Home</a>
