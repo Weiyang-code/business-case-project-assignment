@@ -10,6 +10,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\VendorController;
 
 
 //checking session route
@@ -99,17 +100,17 @@ Route::get('/vendorhomepage', function () {
     return view('vendor.vendorhomepage');
 })->name('vendorhomepage');
 
-Route::match(['get', 'post'], '/orderacceptpage', function () {
+Route::get('/vendorhomepage', [OrderController::class, 'showOrders'])->name('vendor.vendorhomepage');
+
+Route::match(['get', 'post'], '/orderacceptpage/{id}', function ($id) {
     return view('vendor.orderacceptpage');
 })->name('orderacceptpage');
 
-Route::match(['get', 'post'], '/vendorstatuspage', function () {
-    return view('vendor.vendorstatuspage');
+Route::match(['get', 'post'], '/vendorstatuspage/{id}', function ($id) {
+    return view('vendor.vendorstatuspage', compact('id'));
 })->name('vendorstatuspage');
 
-Route::match(['get', 'post'], '/addfooditempage', function () {
-    return view('vendor.addfooditempage');
-})->name('addfooditempage');
+Route::match(['get', 'post'], '/addfooditempage/{id}', [VendorController::class, 'addFoodItem'])->name('addfooditempage');
 
 
 //---------------------------------RIDER-------------------------------------//

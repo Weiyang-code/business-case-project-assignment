@@ -12,7 +12,12 @@ class OrderController extends Controller
     public function showOrders()
     {
         $orders = Order::all(); // Fetch all menu items from the database (for each in blade must use this)
-        return view('rider.riderhomepage', compact('orders'));
+        if (Auth::user()->role === 'Rider') {
+            return view('rider.riderhomepage', compact('orders'));
+        } elseif (Auth::user()->role === 'Vendor') {
+            return view('vendor.vendorhomepage', compact('orders'));
+        }
+        return redirect()->back()->with('error', 'Unauthorized access.');
     }
 
     public function riderOrderDetails($id)
