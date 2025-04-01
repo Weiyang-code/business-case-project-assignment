@@ -3,12 +3,19 @@
 
 @section('content')
 
+<style>
+    body {
+        background-color: #1a3018;
+        font-family: 'Poppins', sans-serif;
+    }
+</style>
+
 <div class="container-fluid mt-4">
     <div class="row">
         @foreach($orders as $order)
             <div class="col-12 pb-3"> <!-- Each card takes full width -->
-                <div class="card shadow-sm h-100 d-flex flex-column">
-                    <div class="card-body flex-grow-1">
+                <div class="card shadow-sm h-100 d-flex flex-column bg-gradient ">
+                    <div class="card-body flex-grow-1" style="--bs-bg-opacity: .3;">
                         <h5 class="card-title">Order ID: {{ $order->id }}</h5>
                         <p class="card-text">
                             <strong>Total Price:</strong> 
@@ -23,8 +30,8 @@
                             <span class="text-muted">{{ \Carbon\Carbon::parse($order->placed_at)->format('d M Y, H:i A') }}</span>
                         </p>
                     </div>
-                    <div class="card-footer bg-white border-0 text-center mt-auto">
-                        <a href="{{ route('orderdetailpage') }}" class="btn btn-primary w-100">View Pickup Details</a>
+                    <div class="card-footer bg-white border-0 text-center mt-auto ">
+                        <a href="{{ route('rider.orderdetailpage', ['id' => $order->id]) }}" class="btn w-100" style="background-color: #1b5e20; color: white;">View Pickup Details</a>
                     </div>
                 </div>
             </div>

@@ -15,6 +15,11 @@ class OrderController extends Controller
         return view('rider.riderhomepage', compact('orders'));
     }
 
+    public function riderOrderDetails($id)
+    {
+        $order = Order::with('user')->findOrFail($id);
+        return view('rider.orderdetailpage', compact('order')); // Pass order to view
+    }
 
     //user order view
     public function view($id)
@@ -31,4 +36,27 @@ class OrderController extends Controller
 
         return view('customer.orderstatuspage', compact('orders'));
     }
+
+    public function updateStatus(Request $request)
+{
+    $request->validate([
+        'order_id' => 'required|integer|exists:orders,id',
+        'status' => 'required|string',
+    ]);
+
+    $order = Order::where('id', $request->order_id)
+                 ->whereNotIn('status', ['completed', 'cancelled'])
+                 ->first();
+
+    if (!$order) {
+        return redirect()->back()->with('error', 'Order cannot be updated.');
+    }
+
+    $order->update(['status' => $request->status]);
+
+    // Redirect to the provided URL, or fallback to a default page
+    return redirect($request->input('redirect_url', route('riderstatuspage')))
+        ->with('success', 'Order status updated successfully!');
+}
+
 }

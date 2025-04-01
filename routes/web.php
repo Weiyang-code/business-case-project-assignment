@@ -68,7 +68,7 @@ Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 Route::get('/orders/{id}', [OrderController::class, 'view'])->name('orders.view');
 Route::get('/orders', [OrderController::class, 'userOrders'])->name('orders.user');
-
+Route::post('/orders/update-status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
 
 
 
@@ -120,9 +120,8 @@ Route::get('/riderhomepage', function () {
 
 Route::get('/riderhomepage', [OrderController::class, 'showOrders'])->name('rider.riderhomepage');
 
-Route::get('/orderdetailpage', function () {
-    return view('rider.orderdetailpage');
-})->name('orderdetailpage');
+Route::get('/orderdetailpage/{id}', [OrderController::class, 'riderOrderDetails'])->name('rider.orderdetailpage');
+
 
 Route::get('/riderstatuspage', function () {
     return view('rider.riderstatuspage');
