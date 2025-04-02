@@ -102,9 +102,7 @@ Route::get('/vendorhomepage', function () {
 
 Route::get('/vendorhomepage', [OrderController::class, 'showOrders'])->name('vendor.vendorhomepage');
 
-Route::match(['get', 'post'], '/orderacceptpage/{id}', function ($id) {
-    return view('vendor.orderacceptpage');
-})->name('orderacceptpage');
+Route::get('/orderacceptpage/{id}', [OrderController::class, 'orderDetails'])->name('vendor.orderacceptpage');
 
 Route::match(['get', 'post'], '/vendorstatuspage/{id}', function ($id) {
     return view('vendor.vendorstatuspage', compact('id'));
@@ -121,7 +119,7 @@ Route::get('/riderhomepage', function () {
 
 Route::get('/riderhomepage', [OrderController::class, 'showOrders'])->name('rider.riderhomepage');
 
-Route::get('/orderdetailpage/{id}', [OrderController::class, 'riderOrderDetails'])->name('rider.orderdetailpage');
+Route::get('/orderdetailpage/{id}', [OrderController::class, 'orderDetails'])->name('rider.orderdetailpage');
 
 Route::get('/riderstatuspage/{id}', function ($id) {
     return view('rider.riderstatuspage', compact('id'));

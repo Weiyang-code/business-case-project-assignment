@@ -47,11 +47,11 @@ body {
         <form action="{{ route('orders.updateStatus') }}" method="POST" class="w-50">
             @csrf
             <input type="hidden" name="order_id" value="{{ $order->id }}">
-            <input type="hidden" name="status" value="confirmed">
+            <input type="hidden" name="status" value="assigned">
             <input type="hidden" name="redirect_url" value="{{ route('riderstatuspage', ['id' => $order->id]) }}">
             <button type="submit" class="btn w-100 fw-bold py-2 rounded-pill shadow-sm"
                 style="background-color: #1b5e20; color: white; transition: 0.3s;">
-                <i class="fas fa-check-circle"></i> Accept Order
+                <i class="fas fa-check-circle"></i> Accept Pickup Request
             </button>
         </form>
 
