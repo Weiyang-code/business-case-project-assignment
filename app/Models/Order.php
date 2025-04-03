@@ -19,7 +19,9 @@ class Order extends Model
         'delivery_address',
         'notes',
         'restaurant',
-        'placed_at'
+        'placed_at',
+        'vendor_id',
+        'rider_id'
     ];
 
     protected $casts = [

@@ -68,6 +68,7 @@ class OrderController extends Controller
 
     public function updateStatus(Request $request)
 {
+    $userId = Auth::id();
     $request->validate([
         'order_id' => 'required|integer|exists:orders,id',
         'status' => 'required|string',
@@ -82,6 +83,14 @@ class OrderController extends Controller
     }
 
     $order->update(['status' => $request->status]);
+
+    if ($request->status === 'preparing') {
+        $order->update(['vendor_id' => $userId]);
+    }
+
+    if ($request->status === 'assigned') {
+        $order->update(['rider_id' => $userId]);
+    }   
 
     // Redirect to the provided URL, or fallback to a default page
     return redirect($request->input('redirect_url', url()->previous()))

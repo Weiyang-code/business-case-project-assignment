@@ -88,7 +88,7 @@
 
 <div class="container mt-4">
     <h2 class="text-center fw-bold text-white mb-4 p-3 bg-black rounded">
-        🚴‍♂️ Order Status Timeline
+    🚴‍♂️ Order #{{ $order->id }} Status Timeline
     </h2>
     <div class="timeline">
         <div class="status-container">
