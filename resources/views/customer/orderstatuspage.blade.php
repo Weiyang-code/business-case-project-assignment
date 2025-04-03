@@ -28,16 +28,20 @@
                     <td>
                         @if($order->status == 'pending')
                         <span class="badge bg-warning text-dark">⏳ Pending</span>
-                        @elseif($order->status == 'confirmed')
-                        <span class="badge bg-primary">✔️ Confirmed</span>
                         @elseif($order->status == 'preparing')
                         <span class="badge bg-info">🍳 Preparing</span>
-                        @elseif($order->status == 'out_for_delivery')
-                        <span class="badge bg-secondary">🚚 Out for Delivery</span>
-                        @elseif($order->status == 'delivered')
-                        <span class="badge bg-success">📦 Delivered</span>
+                        @elseif($order->status == 'assigned')
+                        <span class="badge bg-primary">📌 Assigned</span>
+                        @elseif($order->status == 'ready')
+                        <span class="badge bg-success">✅ Ready</span>
+                        @elseif($order->status == 'pickedup')
+                        <span class="badge bg-secondary">🚚 Picked Up</span>
+                        @elseif($order->status == 'completed')
+                        <span class="badge bg-success">🎉 Completed</span>
                         @elseif($order->status == 'canceled')
                         <span class="badge bg-danger">❌ Canceled</span>
+                        @else
+                        <span class="badge bg-dark">❓ Unknown</span>
                         @endif
                     </td>
                     <td class="text-muted">{{ $order->placed_at->format('d M Y, H:i A') }}</td>
