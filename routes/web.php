@@ -106,6 +106,8 @@ Route::get('/orderacceptpage/{id}', [OrderController::class, 'orderDetails'])->n
 
 Route::get('/vendorstatuspage/{id}', [OrderController::class, 'orderStatus'])->name('vendorstatuspage');
 
+Route::get('/vendorhistorypage', [OrderController::class, 'vendorOrders'])->name('vendorhistorypage');
+
 Route::match(['get', 'post'], '/addfooditempage/{id}', [VendorController::class, 'addFoodItem'])->name('addfooditempage');
 
 
@@ -122,4 +124,7 @@ Route::get('/orderdetailpage/{id}', [OrderController::class, 'orderDetails'])->n
 Route::get('/riderstatuspage/{id}', [OrderController::class, 'orderStatus'])->name('riderstatuspage');
 
 Route::get('/commissionpage/{id}', [OrderController::class, 'commissionDetails'])->name('commissionpage');
+
+Route::get('/riderhistorypage', [OrderController::class, 'riderOrders'])->name('riderhistorypage');
+
 

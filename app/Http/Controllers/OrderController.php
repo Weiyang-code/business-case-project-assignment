@@ -66,6 +66,22 @@ class OrderController extends Controller
         return view('customer.orderstatuspage', compact('orders'));
     }
 
+    public function riderOrders()
+    {
+        $userId = Auth::id(); // Get the authenticated user ID
+        $orders = Order::where('rider_id', $userId)->orderBy('placed_at', 'desc')->get(); // Fetch user's orders
+
+        return view('rider.riderhistorypage', compact('orders'));
+    }
+
+    public function vendorOrders()
+    {
+        $userId = Auth::id(); // Get the authenticated user ID
+        $orders = Order::where('vendor_id', $userId)->orderBy('placed_at', 'desc')->get(); // Fetch user's orders
+
+        return view('vendor.vendorhistorypage', compact('orders'));
+    }
+
     public function updateStatus(Request $request)
 {
     $userId = Auth::id();

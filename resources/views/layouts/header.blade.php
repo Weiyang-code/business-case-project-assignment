@@ -48,7 +48,17 @@
                         {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><a href="{{ route('orders.user') }}" class="dropdown-item">My Orders</a></li>
+                        <li>
+                            <a href="
+        @if(Auth::user()->role == 'User')
+            {{ route('orders.user') }}
+        @elseif(Auth::user()->role == 'Rider')
+            {{ route('riderhistorypage') }}
+        @elseif(Auth::user()->role == 'Vendor')
+            {{ route('vendorhistorypage') }}
+        @endif
+    " class="dropdown-item">History</a>
+</li>
                         <li>
                             <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout
