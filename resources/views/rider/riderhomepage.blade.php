@@ -89,12 +89,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    You have active orders in progress. Click below to view the status of each order.
+                    You have active pickup requests in progress. Click below to view the status of each order.
                 </div>
                 <div class="modal-footer d-flex flex-column w-100">
                     @foreach($acceptedOrders as $order)
                         <a href="{{ route('riderstatuspage', ['id' => $order->id]) }}" class="btn btn-success w-100 mb-2">
-                            View Order #{{ $order->id }}
+                            View Pickup Request #{{ $order->id }}
                         </a>
                     @endforeach
                 </div>
@@ -104,11 +104,11 @@
 
     <!-- Sticky Bottom Tab for Ongoing Orders -->
     <div class="sticky-bottom-tab">
-        <h6 class="text-center mb-2">Ongoing Orders</h6>
+        <h6 class="text-center mb-2">Ongoing Pickup Requests</h6>
         <div class="order-list">
             @foreach($acceptedOrders as $order)
                 <a href="{{ route('riderstatuspage', ['id' => $order->id]) }}" class="order-btn mb-2 d-block">
-                    Order #{{ $order->id }}
+                    Pickup Request #{{ $order->id }}
                 </a>
             @endforeach
         </div>

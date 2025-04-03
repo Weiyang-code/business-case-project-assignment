@@ -1,21 +1,27 @@
+@php
+    if (auth()->user()->role === 'User') {
+        $redirectUrl = '/userhomepage';
+    } elseif (auth()->user()->role === 'Vendor') {
+        $redirectUrl = '/vendorhomepage';
+    } elseif (auth()->user()->role === 'Rider') {
+        $redirectUrl = '/riderhomepage';
+    } else {
+        $redirectUrl = '/'; // Default fallback (optional)
+    }
+@endphp
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/userhomepage">
+        <a class="navbar-brand" href="{{ $redirectUrl }}">
             <img src="{{ asset('images/food_app_logo.png') }}" alt="CareBites Logo" height="75">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
+       
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('userhomepage') ? 'active' : '' }}" href="/userhomepage">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('features') ? 'active' : '' }}" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('pricing') ? 'active' : '' }}" href="#">Pricing</a>
+                    <a class="nav-link {{ Request::is(trim($redirectUrl, '/')) ? 'active' : '' }}" href="{{ $redirectUrl }}">Home</a>
                 </li>
             </ul>
 
@@ -42,9 +48,7 @@
                         {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
                         <li><a href="{{ route('orders.user') }}" class="dropdown-item">My Orders</a></li>
-                        </li>
                         <li>
                             <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Logout
