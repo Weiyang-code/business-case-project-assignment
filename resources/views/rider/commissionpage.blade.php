@@ -3,9 +3,19 @@
 @section('title', 'Commission Page')
 
 @section('content')
-    <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="commission-box">
-            <h1>Commission Receipt</h1>
+<style>
+        body {
+            background-color: #101c0c; /* Dark greenish background */
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+</style>
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card" style="width: 400px; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
+        <div class="card-body">
+            <h1 class="card-title text-center">Commission Receipt</h1>
             <hr>
             <h5>Order Details</h5>
             <div class="commission-details">
@@ -15,39 +25,11 @@
                 <p><strong>Commission Earned:</strong> RM3.00</p>
             </div>
 
-            <a href="{{ route('rider.riderhomepage') }}" class="btn btn-primary home-btn">Home</a>
+            <a href="{{ route('rider.riderhomepage') }}" class="btn btn-primary w-100 mt-4">Home</a>
         </div>
     </div>
-@endsection
+</div>
 
-@section('styles')
-    <style>
-        .commission-box {
-            width: 400px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-        .commission-box hr {
-            margin: 10px 0;
-        }
-        .commission-details {
-            text-align: left;
-            margin-top: 10px;
-        }
-        .commission-details p {
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-        .commission-details strong {
-            display: inline-block;
-            width: 150px; /* Keeps all labels aligned */
-        }
-        .home-btn {
-            margin-top: 20px;
-            width: 100%;
-        }
-    </style>
 @endsection
+   
+

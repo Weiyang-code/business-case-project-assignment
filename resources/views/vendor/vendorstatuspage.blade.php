@@ -1,110 +1,124 @@
 @extends('layouts.app')
 
-@section('title', 'Rider Status Page')
+@section('title', 'Order Status')
 
 @section('content')
-    <style>
+<style>
+    body {
+        background-color: #1a3018;
+        font-family: 'Poppins', sans-serif;
+    }
+    .timeline {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        position: relative;
+    }
+    .status-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        flex: 1;
+    }
+    .status-step {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        background-color: gray;
+        opacity: 0.6;
+        transition: background-color 0.3s, opacity 0.3s;
+        z-index: 2;
+    }
+    .active {
+        background-color: blue;
+        opacity: 1;
+    }
+    .status-text {
+        text-align: center;
+        color: white;
+        font-size: 14px;
+        margin-top: 10px;
+        opacity: 0.6;
+        transition: opacity 0.3s;
+    }
+    .active + .status-text {
+        opacity: 1;
+    }
+    /* Dotted Line Connector */
+    .connector {
+        position: absolute;
+        top: 35px;
+        left: 50%;
+        width: 100%;
+        height: 1px;
+        background: transparent;
+        border-top: 1.5px dashed white;
+        z-index: 1;
+    }
+    .status-container:last-child .connector {
+        display: none;
+    }
+    .timeline .status-container:not(:last-child) .connector {
+        width: calc(100% - 70px);
+        left: 50%;
+        transform: translateX(35px);
+    }
+</style>
 
-body {
-    background-color: #1a3018;
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-}
-
-        .container {
-            background: #1a3018;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            color: white;
-        }
-
-        .circle {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            font-weight: bold;
-            color: white;
-            margin: 0 auto;
-            background-color: gray; /* Default color */
-        }
-
-        .active {
-            background-color: blue !important;
-        }
-
-        #viewReceiptButton {
-            display: none; /* Initially hidden */
-            margin-top: 20px;
-        }
-
-        .status-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
-    </style>
-
-    <div class="container">
-        <h1>Restaurant Status Page</h1>
-
-        <!-- Visualization Section -->
-        <div class="mt-4">
-            <h2>Delivery Status Visualization</h2>
-            <div class="status-container">
-                <div class="text-center">
-                    <div class="circle active" id="circle1">1</div>
-                    <p>Preparing Food</p>
-                </div>
-                <div class="text-center">
-                    <div class="circle" id="circle2">2</div>
-                    <p>Rider Picked Up</p>
-                </div>
-                <div class="text-center">
-                    <div class="circle" id="circle3">3</div>
-                    <p>Sending Foods</p>
-                </div>
-                <div class="text-center">
-                    <div class="circle" id="circle4">4</div>
-                    <p>Finished</p>
-                </div>
-            </div>
+<div class="container mt-4">
+    <h2 class="text-center fw-bold text-white mb-4 p-3 bg-black rounded">
+        🚴‍♂️ Order Status Timeline
+    </h2>
+    
+    <div class="timeline">
+        <div class="status-container">
+            <div class="status-step {{ $order->status == 'preparing' ? 'active' : '' }}">1</div>
+            <div class="connector"></div>
+            <div class="status-text">Preparing Food</div>
         </div>
-
-        <!-- Update Status Button -->
-        <button type="button" id="updateStatusButton" class="btn btn-primary mt-4">Update Status</button>
-
-        <!-- View Receipt Button (Hidden Initially) -->
-        <a id="viewReceiptButton" class="btn btn-success" href="{{ route('commissionpage', ['id' => $id]) }}">View Receipt</a>
+        <div class="status-container">
+            <div class="status-step {{ $order->status == 'assigned' ? 'active' : '' }}">2</div>
+            <div class="connector"></div>
+            <div class="status-text">Rider Assigned</div>
+        </div>
+        <div class="status-container">
+            <div class="status-step {{ $order->status == 'ready' ? 'active' : '' }}">3</div>
+            <div class="connector"></div>
+            <div class="status-text">Order Prepared</div>
+        </div>
+        <div class="status-container">
+            <div class="status-step {{ $order->status == 'pickedup' ? 'active' : '' }}">4</div>
+            <div class="status-text">Rider Picked Up</div>
+        </div>
     </div>
 
-    <script>
-        let currentStep = 1; // Track the current step
+    @if ($order->status == 'assigned')
+        <div class="d-flex justify-content-center mt-4">
+            <form action="{{ route('orders.updateStatus') }}" method="POST" class="w-50">
+                @csrf
+                <input type="hidden" name="order_id" value="{{ $order->id }}">
+                <input type="hidden" name="status" value="ready">
+                <button type="submit" class="btn w-100 fw-bold py-2 rounded-pill shadow-sm bg-success text-white">
+                    <i class="fas fa-check-circle"></i> Order Prepared
+                </button>
+            </form>
+        </div>
+    @endif
 
-        document.getElementById('updateStatusButton').addEventListener('click', function() {
-            if (currentStep < 4) {
-                // Remove active class from all circles
-                document.querySelectorAll('.circle').forEach(circle => {
-                    circle.classList.remove('active');
-                });
-
-                // Move to the next step
-                currentStep++;
-
-                // Highlight the new active step
-                document.getElementById('circle' + currentStep).classList.add('active');
-
-                // Show "View Receipt" button if Finished
-                if (currentStep === 4) {
-                    document.getElementById('viewReceiptButton').style.display = 'block';
-                    document.getElementById('updateStatusButton').disabled = true; // Disable button at last step
-                }
-            }
-        });
-
-    </script>
-
+    @if ($order->status == 'pickedup')
+        <div class="d-flex justify-content-center mt-4">
+            <a href="{{ route('vendor.vendorhomepage') }}" class="btn w-50 fw-bold py-2 rounded-pill shadow-sm btn-primary">
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+        </div>
+    @endif
+</div>
 @endsection
