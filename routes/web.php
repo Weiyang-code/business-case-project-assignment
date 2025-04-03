@@ -102,13 +102,9 @@ Route::get('/vendorhomepage', function () {
 
 Route::get('/vendorhomepage', [OrderController::class, 'showOrders'])->name('vendor.vendorhomepage');
 
-Route::match(['get', 'post'], '/orderacceptpage/{id}', function ($id) {
-    return view('vendor.orderacceptpage');
-})->name('orderacceptpage');
+Route::get('/orderacceptpage/{id}', [OrderController::class, 'orderDetails'])->name('vendor.orderacceptpage');
 
-Route::match(['get', 'post'], '/vendorstatuspage/{id}', function ($id) {
-    return view('vendor.vendorstatuspage', compact('id'));
-})->name('vendorstatuspage');
+Route::get('/vendorstatuspage/{id}', [OrderController::class, 'orderStatus'])->name('vendorstatuspage');
 
 Route::match(['get', 'post'], '/addfooditempage/{id}', [VendorController::class, 'addFoodItem'])->name('addfooditempage');
 
@@ -121,14 +117,9 @@ Route::get('/riderhomepage', function () {
 
 Route::get('/riderhomepage', [OrderController::class, 'showOrders'])->name('rider.riderhomepage');
 
-Route::get('/orderdetailpage/{id}', [OrderController::class, 'riderOrderDetails'])->name('rider.orderdetailpage');
+Route::get('/orderdetailpage/{id}', [OrderController::class, 'orderDetails'])->name('rider.orderdetailpage');
 
-Route::get('/riderstatuspage/{id}', function ($id) {
-    return view('rider.riderstatuspage', compact('id'));
-})->name('riderstatuspage');
+Route::get('/riderstatuspage/{id}', [OrderController::class, 'orderStatus'])->name('riderstatuspage');
 
+Route::get('/commissionpage/{id}', [OrderController::class, 'commissionDetails'])->name('commissionpage');
 
-Route::get('/commissionpage/{id}', function ($id) {
-    $order = \App\Models\Order::findOrFail($id);
-    return view('rider.commissionpage', compact('order'));
-})->name('commissionpage');

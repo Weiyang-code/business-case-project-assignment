@@ -20,10 +20,34 @@ class OrderController extends Controller
         return redirect()->back()->with('error', 'Unauthorized access.');
     }
 
-    public function riderOrderDetails($id)
+    public function orderDetails($id)
     {
         $order = Order::with(['user', 'items.menu'])->findOrFail($id);
-        return view('rider.orderdetailpage', compact('order')); // Pass order to view
+        
+        if (Auth::user()->role === 'Rider') {
+            return view('rider.orderdetailpage', compact('order'));
+        } elseif (Auth::user()->role === 'Vendor') {
+            return view('vendor.orderacceptpage', compact('order'));
+        }
+        return redirect()->back()->with('error', 'Unauthorized access.');// Pass order to view
+    }
+
+    public function orderStatus($id)
+    {
+        $order = Order::with(['user', 'items.menu'])->findOrFail($id);
+        
+        if (Auth::user()->role === 'Rider') {
+            return view('rider.riderstatuspage', compact('order'));
+        } elseif (Auth::user()->role === 'Vendor') {
+            return view('vendor.vendorstatuspage', compact('order'));
+        }
+        return redirect()->back()->with('error', 'Unauthorized access.');// Pass order to view
+    }
+
+    public function commissionDetails($id)
+    {
+        $order = Order::with(['user', 'items.menu'])->findOrFail($id);
+        return view('rider.commissionpage', compact('order'));
     }
 
     //user order view

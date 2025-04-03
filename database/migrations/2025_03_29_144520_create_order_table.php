@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id(); // Primary key
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
             $table->decimal('total_price', 10, 2); 
-            $table->enum('status', ['pending', 'confirmed', 'preparing', 'out_for_delivery', 'delivered', 'canceled'])->default('pending'); // Order status
+            $table->enum('status', ['pending', 'preparing', 'assigned', 'ready', 'pickedup', 'completed', 'canceled'])->default('pending'); // Order status
             $table->string('payment_method')->default('cash'); 
             $table->text('delivery_address'); 
             $table->text('notes')->nullable();
