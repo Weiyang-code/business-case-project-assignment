@@ -44,6 +44,7 @@ body {
 
         </div>
         <div class="card-footer text-center mt-auto bg-white border-0 d-flex gap-2 p-3">
+    @if($order->status === 'preparing')
         <form action="{{ route('orders.updateStatus') }}" method="POST" class="w-50">
             @csrf
             <input type="hidden" name="order_id" value="{{ $order->id }}">
@@ -55,15 +56,23 @@ body {
             </button>
         </form>
 
+        <form action="{{ route('rider.riderhomepage') }}" class="w-50">
+            @csrf
+            <button type="submit" class="btn w-100 fw-bold py-2 rounded-pill shadow-sm"
+                style="background-color: #c5303e; color: white; transition: 0.3s;">
+                <i class="fas fa-times-circle"></i> Decline
+            </button>
+        </form>
+    @else
+        <form action="{{ route('rider.history') }}" class="w-100">
+            <button type="submit" class="btn w-100 fw-bold py-2 rounded-pill shadow-sm"
+                style="background-color: #6c757d; color: white; transition: 0.3s;">
+                <i class="fas fa-history"></i> Back to History
+            </button>
+        </form>
+    @endif
+</div>
 
-                        <form action="{{ route('rider.riderhomepage') }}" class="w-50">
-                            @csrf
-                            <button type="submit" class="btn w-100 fw-bold py-2 rounded-pill shadow-sm"
-                                style="background-color: #c5303e; color: white; transition: 0.3s;">
-                                <i class="fas fa-times-circle"></i> Decline
-                            </button>
-                        </form>
-                    </div>
     </div>
 </div>
 @endsection
