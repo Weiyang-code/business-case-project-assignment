@@ -13,9 +13,9 @@ class OrderController extends Controller
     {
         $orders = Order::all(); // Fetch all menu items from the database (for each in blade must use this)
         if (Auth::user()->role === 'Rider') {
-            return view('rider.riderhomepage', compact('orders'));
+            return view('runner.runnerhomepage', compact('orders'));
         } elseif (Auth::user()->role === 'Vendor') {
-            return view('vendor.vendorhomepage', compact('orders'));
+            return view('restaurant.restauranthomepage', compact('orders'));
         }
         return redirect()->back()->with('error', 'Unauthorized access.');
     }
@@ -25,9 +25,9 @@ class OrderController extends Controller
         $order = Order::with(['user', 'items.menu'])->findOrFail($id);
         
         if (Auth::user()->role === 'Rider') {
-            return view('rider.orderdetailpage', compact('order'));
+            return view('runner.orderdetailpage', compact('order'));
         } elseif (Auth::user()->role === 'Vendor') {
-            return view('vendor.orderacceptpage', compact('order'));
+            return view('restaurant.orderacceptpage', compact('order'));
         }
         return redirect()->back()->with('error', 'Unauthorized access.');// Pass order to view
     }
@@ -37,9 +37,9 @@ class OrderController extends Controller
         $order = Order::with(['user', 'items.menu'])->findOrFail($id);
         
         if (Auth::user()->role === 'Rider') {
-            return view('rider.riderstatuspage', compact('order'));
+            return view('runner.runnerstatuspage', compact('order'));
         } elseif (Auth::user()->role === 'Vendor') {
-            return view('vendor.vendorstatuspage', compact('order'));
+            return view('restaurant.restaurantstatuspage', compact('order'));
         }
         return redirect()->back()->with('error', 'Unauthorized access.');// Pass order to view
     }
@@ -47,7 +47,7 @@ class OrderController extends Controller
     public function commissionDetails($id)
     {
         $order = Order::with(['user', 'items.menu'])->findOrFail($id);
-        return view('rider.commissionpage', compact('order'));
+        return view('runner.commissionpage', compact('order'));
     }
 
     //user order view
@@ -66,20 +66,20 @@ class OrderController extends Controller
         return view('customer.orderstatuspage', compact('orders'));
     }
 
-    public function riderOrders()
+    public function runnerOrders()
     {
         $userId = Auth::id(); // Get the authenticated user ID
         $orders = Order::where('rider_id', $userId)->orderBy('placed_at', 'desc')->get(); // Fetch user's orders
 
-        return view('rider.riderhistorypage', compact('orders'));
+        return view('runner.runnerhistorypage', compact('orders'));
     }
 
-    public function vendorOrders()
+    public function restaurantOrders()
     {
         $userId = Auth::id(); // Get the authenticated user ID
         $orders = Order::where('vendor_id', $userId)->orderBy('placed_at', 'desc')->get(); // Fetch user's orders
 
-        return view('vendor.vendorhistorypage', compact('orders'));
+        return view('restaurant.restauranthistorypage', compact('orders'));
     }
 
     public function updateStatus(Request $request)

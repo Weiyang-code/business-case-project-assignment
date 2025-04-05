@@ -8,11 +8,11 @@
     }
 </style>
 <div class="container py-5">
-    <h2 class="mb-4 text-white text-center fw-bold">📦 Pickup History</h2>
+    <h2 class="mb-4 text-white text-center fw-bold">📦 Order History</h2>
 
     @if($orders->isEmpty())
     <div class="text-center py-5">
-        <p class="text-muted fs-5">You have not accepted any pickup requests yet.</p>
+        <p class="text-muted fs-5">You have not accepted any orders yet.</p>
     </div>
     @else
     <div class="table-responsive">
@@ -52,7 +52,7 @@
                     </td>
                     <td class="text-muted">{{ $order->placed_at->format('d M Y, H:i A') }}</td>
                     <td>
-                        <a href="{{ route('rider.orderdetailpage', ['id' => $order->id]) }}" class="btn btn-outline-dark btn-sm rounded-pill px-3">
+                        <a href="{{ route('restaurant.orderacceptpage', ['id' => $order->id]) }}" class="btn btn-outline-dark btn-sm rounded-pill px-3">
                             🔍 View Details
                         </a>
                     </td>

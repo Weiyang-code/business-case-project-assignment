@@ -87,7 +87,7 @@
         <div class="status-container">
             <div class="status-step {{ $order->status == 'assigned' ? 'active' : '' }}">2</div>
             <div class="connector"></div>
-            <div class="status-text">Rider Assigned</div>
+            <div class="status-text">Runner Assigned</div>
         </div>
         <div class="status-container">
             <div class="status-step {{ $order->status == 'ready' ? 'active' : '' }}">3</div>
@@ -96,7 +96,7 @@
         </div>
         <div class="status-container">
             <div class="status-step {{ $order->status == 'pickedup' ? 'active' : '' }}">4</div>
-            <div class="status-text">Rider Picked Up</div>
+            <div class="status-text">Runner Picked Up</div>
         </div>
     </div>
 
@@ -113,9 +113,9 @@
         </div>
     @endif
 
-    @if ($order->status == 'pickedup')
+    @if (in_array($order->status, ['pickedup', 'completed']))
         <div class="d-flex justify-content-center mt-4">
-            <a href="{{ route('vendor.vendorhomepage') }}" class="btn w-50 fw-bold py-2 rounded-pill shadow-sm btn-primary">
+            <a href="{{ route('restaurant.restauranthomepage') }}" class="btn w-50 fw-bold py-2 rounded-pill shadow-sm btn-primary">
                 <i class="fas fa-home"></i> Back to Home
             </a>
         </div>

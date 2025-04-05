@@ -106,7 +106,7 @@
                                 </p>
                             </div>
                             <div class="card-footer bg-white border-0 text-center mt-auto">
-                                <a href="{{ route('vendor.orderacceptpage', ['id' => $order->id]) }}" class="btn w-100" style="background-color: #1b5e20; color: white;">View Order Details</a>
+                                <a href="{{ route('restaurant.orderacceptpage', ['id' => $order->id]) }}" class="btn w-100" style="background-color: #1b5e20; color: white;">View Order Details</a>
                             </div>
                         </div>
                     </div>
@@ -134,7 +134,7 @@
                 </div>
                 <div class="modal-footer d-flex flex-column w-100">
                     @foreach($acceptedOrders as $order)
-                        <a href="{{ route('vendorstatuspage', ['id' => $order->id]) }}" class="btn btn-success w-100 mb-2">
+                        <a href="{{ route('restaurantstatuspage', ['id' => $order->id]) }}" class="btn btn-success w-100 mb-2">
                             View Order #{{ $order->id }}
                         </a>
                     @endforeach
@@ -148,7 +148,7 @@
         <h6 class="text-center mb-2">Ongoing Orders</h6>
         <div class="order-list">
             @foreach($acceptedOrders as $order)
-                <a href="{{ route('vendorstatuspage', ['id' => $order->id]) }}" class="order-btn mb-2 d-block">
+                <a href="{{ route('restaurantstatuspage', ['id' => $order->id]) }}" class="order-btn mb-2 d-block">
                     Order #{{ $order->id }}
                 </a>
             @endforeach
