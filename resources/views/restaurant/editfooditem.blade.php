@@ -55,6 +55,15 @@
                     <input type="file" name="image" class="form-control">
                 </div>
 
+                <!-- Active/Inactive Dropdown -->
+                <div class="form-group mb-3">
+                    <label for="active">Status:</label>
+                    <select name="active" class="form-control">
+                        <option value="1" {{ old('active', $menu->active) == '1' ? 'selected' : '' }}>Active</option>
+                        <option value="0" {{ old('active', $menu->active) == '0' ? 'selected' : '' }}>Inactive</option>
+                    </select>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Update Food Item</button>
             </form>
         </div>

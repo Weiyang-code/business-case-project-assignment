@@ -50,10 +50,17 @@
             <input type="file" class="form-control border-0 shadow-sm rounded" id="image" name="image">
         </div>
 
+        <!-- Active/Inactive Dropdown -->
+        <div class="mb-4">
+            <label for="active" class="form-label fw-bold text-dark">Status</label>
+            <select class="form-control border-0 shadow-sm rounded" id="active" name="active" required>
+                <option value="1" {{ old('active', '1') == '1' ? 'selected' : '' }}>Active</option>
+                <option value="0" {{ old('active', '1') == '0' ? 'selected' : '' }}>Inactive</option>
+            </select>
+        </div>
+
         <!-- Restaurant Name -->
         <div class="mb-4">
-            <!-- <label for="restaurant" class="form-label fw-bold text-dark">Restaurant Name</label> -->
-            <!-- Hidden input field with user ID -->
             <input type="hidden" id="restaurant" name="restaurant" value="{{ Auth::user()->id }}" required>
         </div>
         
@@ -65,19 +72,16 @@
 </div>
 @endsection
 
-
 @section('styles')
 <style>
     /* Set background color for the entire body */
     body {
         background-color: #101c0c;
-        /* Light grey background */
     }
 
     /* Optional container background override */
     .container {
         background-color: #FFF9C4;
-        /* White background for the form container */
     }
 </style>
 @endsection

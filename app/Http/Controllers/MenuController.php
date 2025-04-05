@@ -9,7 +9,7 @@ class MenuController extends Controller
 {
     public function showMenuPage()
     {
-        $menuItems = Menu::all(); // Fetch all menu items from the database (for each in blade must use this)
+        $menuItems = \App\Models\Menu::where('active', 1)->get();
         return view('customer.menupage', compact('menuItems'));
     }
 }

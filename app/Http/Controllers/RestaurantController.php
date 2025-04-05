@@ -41,6 +41,7 @@ class RestaurantController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'active' => 'required|boolean',
         ]);
 
         $restaurant = \App\Models\Restaurant::where('user_id', auth()->id())->first();
@@ -82,6 +83,7 @@ class RestaurantController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'active' => 'required|boolean',
         ]);
 
         // Find the food item
