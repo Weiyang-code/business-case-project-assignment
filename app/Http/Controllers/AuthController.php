@@ -31,11 +31,11 @@ class AuthController extends Controller
 
                 switch ($selectedRole) {
                     case 'Vendor':
-                        return redirect()->intended('vendorhomepage');
+                        return redirect()->intended('restauranthomepage');
                     case 'Rider':
-                        return redirect()->intended('riderhomepage');
+                        return redirect()->intended('runnerhomepage');
                     default: // Default to User
-                        return redirect()->intended('userhomepage');
+                        return redirect()->intended('customerhomepage');
                 }
             } else {
                 return back()->withErrors([

@@ -2,9 +2,9 @@
     if (auth()->user()->role === 'User') {
         $redirectUrl = '/userhomepage';
     } elseif (auth()->user()->role === 'Vendor') {
-        $redirectUrl = '/vendorhomepage';
+        $redirectUrl = '/restauranthomepage';
     } elseif (auth()->user()->role === 'Rider') {
-        $redirectUrl = '/riderhomepage';
+        $redirectUrl = '/runnerhomepage';
     } else {
         $redirectUrl = '/'; // Default fallback (optional)
     }
@@ -53,9 +53,9 @@
         @if(Auth::user()->role == 'User')
             {{ route('orders.user') }}
         @elseif(Auth::user()->role == 'Rider')
-            {{ route('riderhistorypage') }}
+            {{ route('runnerhistorypage') }}
         @elseif(Auth::user()->role == 'Vendor')
-            {{ route('vendorhistorypage') }}
+            {{ route('restauranthistorypage') }}
         @endif
     " class="dropdown-item">History</a>
 </li>

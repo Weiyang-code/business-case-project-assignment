@@ -10,7 +10,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\VendorController;
+use App\Http\Controllers\RestaurantController;
 
 
 //checking session route
@@ -55,8 +55,8 @@ Route::post('/logout', function (Request $request) {
 
 //----------------------------------USER--------------------------------------//
 
-Route::match(['get', 'post'], '/userhomepage', function () {
-    return view('customer.userhomepage');
+Route::match(['get', 'post'], '/customerhomepage', function () {
+    return view('customer.customerhomepage');
 })->name('userhomepage');
 
 Route::get('/menupage', [MenuController::class, 'showMenuPage'])->name('menupage');
@@ -96,35 +96,35 @@ Route::post('/orders/update-status', [OrderController::class, 'updateStatus'])->
 
 //---------------------------------VENDOR------------------------------------//
 
-Route::get('/vendorhomepage', function () {
-    return view('vendor.vendorhomepage');
-})->name('vendorhomepage');
+Route::get('/restauranthomepage', function () {
+    return view('restaurant.restauranthomepage');
+})->name('restauranthomepage');
 
-Route::get('/vendorhomepage', [OrderController::class, 'showOrders'])->name('vendor.vendorhomepage');
+Route::get('/restauranthomepage', [OrderController::class, 'showOrders'])->name('restaurant.restauranthomepage');
 
-Route::get('/orderacceptpage/{id}', [OrderController::class, 'orderDetails'])->name('vendor.orderacceptpage');
+Route::get('/orderacceptpage/{id}', [OrderController::class, 'orderDetails'])->name('restaurant.orderacceptpage');
 
-Route::get('/vendorstatuspage/{id}', [OrderController::class, 'orderStatus'])->name('vendorstatuspage');
+Route::get('/restaurantstatuspage/{id}', [OrderController::class, 'orderStatus'])->name('restaurantstatuspage');
 
-Route::get('/vendorhistorypage', [OrderController::class, 'vendorOrders'])->name('vendorhistorypage');
+Route::get('/restauranthistorypage', [OrderController::class, 'restaurantOrders'])->name('restauranthistorypage');
 
-Route::match(['get', 'post'], '/addfooditempage/{id}', [VendorController::class, 'addFoodItem'])->name('addfooditempage');
+Route::match(['get', 'post'], '/addfooditempage/{id}', [RestaurantController::class, 'addFoodItem'])->name('addfooditempage');
 
 
 //---------------------------------RIDER-------------------------------------//
 
-Route::get('/riderhomepage', function () {
-    return view('rider.riderhomepage');
-})->name('riderhomepage');
+Route::get('/runnerhomepage', function () {
+    return view('runner.runnerhomepage');
+})->name('runnerhomepage');
 
-Route::get('/riderhomepage', [OrderController::class, 'showOrders'])->name('rider.riderhomepage');
+Route::get('/runnerhomepage', [OrderController::class, 'showOrders'])->name('runner.runnerhomepage');
 
-Route::get('/orderdetailpage/{id}', [OrderController::class, 'orderDetails'])->name('rider.orderdetailpage');
+Route::get('/orderdetailpage/{id}', [OrderController::class, 'orderDetails'])->name('runner.orderdetailpage');
 
-Route::get('/riderstatuspage/{id}', [OrderController::class, 'orderStatus'])->name('riderstatuspage');
+Route::get('/runnerstatuspage/{id}', [OrderController::class, 'orderStatus'])->name('runnerstatuspage');
 
 Route::get('/commissionpage/{id}', [OrderController::class, 'commissionDetails'])->name('commissionpage');
 
-Route::get('/riderhistorypage', [OrderController::class, 'riderOrders'])->name('riderhistorypage');
+Route::get('/runnerhistorypage', [OrderController::class, 'runnerOrders'])->name('runnerhistorypage');
 
 

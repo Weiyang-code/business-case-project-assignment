@@ -99,7 +99,7 @@
         <div class="status-container">
             <div class="status-step {{ $order->status == 'assigned' ? 'active' : '' }}">2</div>
             <div class="connector"></div>
-            <div class="status-text">Rider Assigned</div>
+            <div class="status-text">Runner Assigned</div>
         </div>
         <div class="status-container">
             <div class="status-step {{ $order->status == 'ready' ? 'active' : '' }}">3</div>
@@ -109,7 +109,7 @@
         <div class="status-container">
             <div class="status-step {{ $order->status == 'pickedup' ? 'active' : '' }}">4</div>
             <div class="connector"></div>
-            <div class="status-text">Rider Picked Up</div>
+            <div class="status-text">Runner Picked Up</div>
         </div>
         <div class="status-container">
             <div class="status-step {{ $order->status == 'completed' ? 'active' : '' }}">5</div>

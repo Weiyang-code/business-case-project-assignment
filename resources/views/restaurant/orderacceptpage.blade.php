@@ -23,6 +23,7 @@ body {
             
             <p><strong>Delivery Address:</strong> <span class="text-dark">{{ $order->delivery_address }}</span></p>
             <p><strong>Placed At:</strong> <span class="text-muted">{{ $order->placed_at->format('d M Y, H:i A') }}</span></p>
+            <p><strong>Additional Notes:</strong> <span class="text-muted">{{ $order->notes }}</span></p>
             <h5 class="fw-bold text-dark mt-4">🛒 Order Items</h5>
 <ul class="list-group">
     @foreach ($order->items as $item)
@@ -49,14 +50,14 @@ body {
             @csrf
             <input type="hidden" name="order_id" value="{{ $order->id }}">
             <input type="hidden" name="status" value="preparing">
-            <input type="hidden" name="redirect_url" value="{{ route('vendorstatuspage', ['id' => $order->id]) }}">
+            <input type="hidden" name="redirect_url" value="{{ route('restaurantstatuspage', ['id' => $order->id]) }}">
             <button type="submit" class="btn w-100 fw-bold py-2 rounded-pill shadow-sm"
                 style="background-color: #1b5e20; color: white; transition: 0.3s;">
                 <i class="fas fa-check-circle"></i> Accept Order
             </button>
         </form>
 
-        <form action="{{ route('vendor.vendorhomepage') }}" class="w-50">
+        <form action="{{ route('restaurant.restauranthomepage') }}" class="w-50">
             @csrf
             <button type="submit" class="btn w-100 fw-bold py-2 rounded-pill shadow-sm"
                 style="background-color: #c5303e; color: white; transition: 0.3s;">
@@ -64,7 +65,7 @@ body {
             </button>
         </form>
     @else
-        <form action="{{ route('vendorhistorypage') }}" class="w-100">
+        <form action="{{ route('restauranthistorypage') }}" class="w-100">
             <button type="submit" class="btn w-100 fw-bold py-2 rounded-pill shadow-sm bg-primary"
                 style="color: white; transition: 0.3s;">
                 <i class="fas fa-history"></i> Back to History

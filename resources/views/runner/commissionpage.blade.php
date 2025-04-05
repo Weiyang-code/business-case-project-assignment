@@ -25,7 +25,7 @@
                 <p><strong>Commission Earned:</strong> RM3.00</p>
             </div>
 
-            <a href="{{ route('rider.riderhomepage') }}" class="btn btn-primary w-100 mt-4">Home</a>
+            <a href="{{ route('runner.runnerhomepage') }}" class="btn btn-primary w-100 mt-4">Home</a>
         </div>
     </div>
 </div>
