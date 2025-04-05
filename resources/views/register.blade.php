@@ -125,9 +125,9 @@
                 <input type="hidden" id="role" name="role" value="{{ session('role', 'User') }}">
 
                 <div class="d-flex justify-content-between gap-2 mb-4">
-                    <button type="button" class="btn role-btn active" onclick="setRole(this)">User</button>
-                    <button type="button" class="btn role-btn" onclick="setRole(this)">Vendor</button>
-                    <button type="button" class="btn role-btn" onclick="setRole(this)">Rider</button>
+                    <button type="button" class="btn role-btn active" onclick="setRole(this)">Customer</button>
+                    <button type="button" class="btn role-btn" onclick="setRole(this)">Restaurant</button>
+                    <button type="button" class="btn role-btn" onclick="setRole(this)">Runner</button>
                 </div>
 
                 <div class="mb-3">
