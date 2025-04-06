@@ -75,7 +75,9 @@
 <div class="wrapper">
     <div class="sidebar">
         <h4 class="mb-3 text-center">Customise</h4>
-        <a href="{{ route('addfooditempage', ['id' => auth()->id()]) }}">Update Menu</a>
+        <a href="/restaurant/menu">Update Menu</a>
+        <a href="{{ route('addfooditempage', ['id' => auth()->id()]) }}">Add Menu</a>
+
     </div>
 
     <div class="container-fluid mt-2 main-content">

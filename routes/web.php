@@ -73,25 +73,6 @@ Route::post('/orders/update-status', [OrderController::class, 'updateStatus'])->
 
 
 
-// Route::get('/menupage', function () {
-//     return view('customer.menupage');
-// })->name('menupage');
-
-// Route::match(['get', 'post'],'/restaurantpage', function () {
-//         return view('customer.restaurantpage');
-//     })->name('restaurantpage');    
-
-// Route::match(['get', 'post'],'/cartpage', function () {
-//         return view('customer.cartpage');
-//     })->name('cartpage'); 
-
-// Route::match(['get', 'post'],'/paymentpage', function () {
-//         return view('customer.paymentpage');
-//     })->name('paymentpage'); 
-
-// Route::match(['get', 'post'],'/orderstatuspage', function () {
-//         return view('customer.orderstatuspage');
-//     })->name('orderstatuspage'); 
 
 
 //---------------------------------VENDOR------------------------------------//
@@ -109,6 +90,14 @@ Route::get('/restaurantstatuspage/{id}', [OrderController::class, 'orderStatus']
 Route::get('/restauranthistorypage', [OrderController::class, 'restaurantOrders'])->name('restauranthistorypage');
 
 Route::match(['get', 'post'], '/addfooditempage/{id}', [RestaurantController::class, 'addFoodItem'])->name('addfooditempage');
+Route::get('/restaurant/{id}/add-food', [RestaurantController::class, 'addFoodItem'])->name('restaurant.addfood');
+Route::post('/restaurant/{id}/store-food', [RestaurantController::class, 'storeFoodItem'])->name('restaurant.storefood');
+
+
+Route::get('/restaurant/menu', [RestaurantController::class, 'viewMenu'])->name('restaurant.viewmenu');
+// Route to edit a food item
+Route::get('/restaurant/menu/edit/{id}', [RestaurantController::class, 'editFoodItem'])->name('restaurant.editfood');
+Route::put('/restaurant/menu/edit/{id}', [RestaurantController::class, 'updateFoodItem'])->name('restaurant.updatefood');
 
 
 //---------------------------------RIDER-------------------------------------//

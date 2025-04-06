@@ -55,28 +55,65 @@ class AuthController extends Controller
         return view('register');
     }
 
+    // public function register(Request $request)
+    // {
+    //     $request->validate([
+    //         'name' => 'required|string|max:255',
+    //         'email' => 'required|string|email|max:255|unique:users',
+    //         'password' => 'required|string|min:6|confirmed',
+    //         'phone' => 'nullable|string|max:15',
+    //     ]);
+
+    //     $role = session('role', 'User'); // Default to 'User' if session is empty
+
+    //     $user = User::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'phone' => $request->phone, // Save phone number
+    //         'password' => bcrypt($request->password),
+    //         'role' => $role,
+    //     ]);
+
+    //     Auth::login($user);
+    //     session()->forget('role');
+
+    //     return redirect()->route('register')->with('success', 'Registration successful! You can now log in.');
+    // }
+
     public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'phone' => 'nullable|string|max:15',
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:6|confirmed',
+        'phone' => 'nullable|string|max:15',
+    ]);
+
+    $role = session('role', 'User'); // Default to 'User' if session is empty
+
+    // Create the user
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'phone' => $request->phone, // Save phone number
+        'password' => bcrypt($request->password),
+        'role' => $role,
+    ]);
+
+    // If the role is 'Vendor', create a restaurant entry
+    if ($role === 'Restaurant') {
+        \App\Models\Restaurant::create([
+            'user_id' => $user->id, // Associate the restaurant with the vendor user
         ]);
-
-        $role = session('role', 'User'); // Default to 'User' if session is empty
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone, // Save phone number
-            'password' => bcrypt($request->password),
-            'role' => $role,
-        ]);
-
-        Auth::login($user);
-        session()->forget('role');
-
-        return redirect()->route('register')->with('success', 'Registration successful! You can now log in.');
     }
+
+    // Log the user in
+    Auth::login($user);
+
+    // Forget the role session after registration
+    session()->forget('role');
+
+    return redirect()->route('register')->with('success', 'Registration successful! You can now log in.');
+}
+
 }

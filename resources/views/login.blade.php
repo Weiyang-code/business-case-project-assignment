@@ -7,39 +7,49 @@
         background-color: #101c0c;
         font-family: 'Poppins', sans-serif;
     }
+
     .card {
         border-radius: 15px;
         background: #fff;
         padding: 2rem;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     }
+
     .role-btn {
         transition: all 0.3s ease-in-out;
         color: #101c0c;
         font-weight: 600;
     }
-    .role-btn.active, .role-btn:hover {
+
+    .role-btn.active,
+    .role-btn:hover {
         background: #101c0c !important;
         color: #fff !important;
     }
+
     .btn-primary {
         background-color: #101c0c;
         border: none;
     }
+
     .btn-primary:hover {
         background-color: #162711;
     }
+
     .form-control {
         border-radius: 8px;
     }
+
     .form-control:focus {
         border-color: #101c0c;
         box-shadow: 0px 0px 8px rgba(16, 28, 12, 0.5);
     }
+
     a {
         color: #101c0c;
         font-weight: 500;
     }
+
     a:hover {
         text-decoration: underline;
         color: #162711;
