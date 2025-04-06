@@ -32,8 +32,13 @@
                     <h5 class="card-title font-weight-bold text-black">{{ $menu->name }}</h5>
                     <p class="card-text text-muted">{{ $menu->description }}</p>
                     <p class="card-text text-success"><strong>Price:</strong> RM{{ number_format($menu->price, 2) }}</p>
+                    <p class="card-text text-success"><strong>Calories:</strong> {{ $menu->calories }}</p>
+                    <p class="card-text text-success">
+                    <strong>Vegetarian:</strong>
+                    {{ $menu->vegetarian == '1' ? '✅' : '❌' }}
+                    </p>
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('restaurant.editfood', ['id' => $menu->id]) }}" class="btn btn-custom btn-sm">Update Menu</a>
+                        <a href="{{ route('restaurant.editfood', ['id' => $menu->id]) }}" class="btn btn-custom btn-sm">Update Item</a>
                     </div>
                 </div>
             </div>

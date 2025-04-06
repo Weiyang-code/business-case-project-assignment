@@ -50,6 +50,21 @@
             <input type="file" class="form-control border-0 shadow-sm rounded" id="image" name="image">
         </div>
 
+        <!-- Calories -->
+        <div class="mb-4">
+            <label for="calories" class="form-label fw-bold text-dark">Calories</label>
+            <input type="number" step="1" class="form-control border-0 shadow-sm rounded" id="calories" name="calories" value="{{ old('calories') }}" required>
+        </div>
+
+        <!-- Vegetarian -->
+        <div class="mb-4">
+            <label for="vegetarian" class="form-label fw-bold text-dark">Status</label>
+            <select class="form-control border-0 shadow-sm rounded" id="vegetarian" name="vegetarian" required>
+                <option value="1" {{ old('vegetarian', '1') == '1' ? 'selected' : '' }}>Vegetarian</option>
+                <option value="0" {{ old('vegetarian', '1') == '0' ? 'selected' : '' }}>Non-Vegetarian</option>
+            </select>
+        </div>
+
         <!-- Active/Inactive Dropdown -->
         <div class="mb-4">
             <label for="active" class="form-label fw-bold text-dark">Status</label>

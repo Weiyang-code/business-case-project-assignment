@@ -11,7 +11,7 @@ class Menu extends Model
 
     protected $table = 'food'; //input table name else will use menu table but we dont have cuz we use food table instead of menu
 
-    protected $fillable = ['name', 'description', 'restaurant_id', 'price', 'image', 'active'];
+    protected $fillable = ['name', 'description', 'restaurant_id', 'price', 'image', 'calories', 'vegetarian', 'active'];
     protected $casts = [
         'active' => 'boolean',
     ];

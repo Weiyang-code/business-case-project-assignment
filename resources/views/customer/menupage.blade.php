@@ -28,6 +28,23 @@
     <div class="container">
         <h2 class="text-center mb-4">Our Menu</h2>
         <div class="row">
+        <form method="GET" action="{{ route('menupage') }}" class="mb-4" id="menu-filter-form">
+                <div class="d-flex justify-content-center">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" style="min-width: 400px;" placeholder="Search for food..." value="{{ request('search') }}" id="search-input">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                    <div>
+                        <select name="vegetarian" class="form-select" id="vegetarian-select">
+                            <option value="">All</option>
+                            <option value="1" {{ request('vegetarian') === '1' ? 'selected' : '' }}>Vegetarian</option>
+                            <option value="0" {{ request('vegetarian') === '0' ? 'selected' : '' }}>Non-Vegetarian</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+
+
             @foreach($menuItems as $menu)
             <div class="col-md-4 pb-3">
                 <div class="card p-3">
@@ -36,7 +53,9 @@
                         <h4>{{ $menu->name }}</h4>
                         <p class="text-muted">{{ $menu->description }}</p>
                         <p class="text-price"><strong>Price: RM{{ number_format($menu->price, 2) }}</strong></p>
-
+                        <p class="text-price"><strong>Calories: {{ $menu->calories }}</strong></p>
+                        <p class="text-price"><strong>Vegetarian:</strong>
+                        {{ $menu->vegetarian == '1' ? '✅' : '❌' }}</p>
                         <form action="{{ route('cart.add', $menu->id) }}" method="POST">
                             @csrf
                             <div class="input-group mb-3">
@@ -61,7 +80,27 @@
 
 @section('scripts')
 <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        // Get elements
+        const vegetarianSelect = document.getElementById('vegetarian-select');
+        const form = document.getElementById('menu-filter-form');
+
+        // Auto-submit form when the vegetarian filter changes
+        vegetarianSelect.addEventListener('change', function() {
+            form.submit();
+        });
+    });
+
     document.addEventListener("DOMContentLoaded", function() {
+        // Ensure the form is only submitted when the search button is clicked
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.querySelector('button[type="submit"]');
+
+        // Add event listener for the search button to submit the form
+        searchButton.addEventListener('click', function() {
+            document.getElementById('menu-filter-form').submit();
+        });
+
         document.querySelectorAll('.quantity-decrease').forEach(button => {
             button.addEventListener('click', function() {
                 let input = this.nextElementSibling;

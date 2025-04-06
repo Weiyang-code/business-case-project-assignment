@@ -55,6 +55,21 @@
                     <input type="file" name="image" class="form-control">
                 </div>
 
+                <!-- Food calories -->
+                <div class="form-group mb-3">
+                    <label for="calories">Calories:</label>
+                    <input type="number" name="calories" class="form-control" value="{{ old('calories', $menu->calories) }}">
+                </div>
+
+                <!-- Active/Inactive Dropdown -->
+                <div class="form-group mb-3">
+                    <label for="vegetarian">Vegetarian:</label>
+                    <select name="vegetarian" class="form-control">
+                        <option value="1" {{ old('vegetarian', $menu->vegetarian) == '1' ? 'selected' : '' }}>Vegetarian</option>
+                        <option value="0" {{ old('vegetarian', $menu->vegetarian) == '0' ? 'selected' : '' }}>Non-Vegetarian</option>
+                    </select>
+                </div>
+
                 <!-- Active/Inactive Dropdown -->
                 <div class="form-group mb-3">
                     <label for="active">Status:</label>

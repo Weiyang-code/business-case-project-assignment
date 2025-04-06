@@ -41,6 +41,8 @@ class RestaurantController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'calories' => 'required|numeric|min:0',
+            'vegetarian' => 'required|boolean',
             'active' => 'required|boolean',
         ]);
 
@@ -83,6 +85,8 @@ class RestaurantController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'calories' => 'required|numeric|min:0',
+            'vegetarian' => 'required|boolean',
             'active' => 'required|boolean',
         ]);
 

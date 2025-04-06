@@ -10,9 +10,9 @@
 <div class="container py-5">
     <h2 class="mb-4 text-white text-center fw-bold">📦 Order History</h2>
 
-    @if($orders->isEmpty())
+    @if($orders->where('vendor_id', '!=', auth()->id())->isEmpty())
     <div class="text-center py-5">
-        <p class="text-muted fs-5">You have not accepted any orders yet.</p>
+        <p class="text-white fs-5 opacity-75">You have not accepted any orders yet.</p>
     </div>
     @else
     <div class="table-responsive">
