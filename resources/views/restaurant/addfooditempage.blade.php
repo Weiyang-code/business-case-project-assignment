@@ -48,6 +48,7 @@
         <div class="mb-4">
             <label for="image" class="form-label fw-bold text-dark">Image (optional)</label>
             <input type="file" class="form-control border-0 shadow-sm rounded" id="image" name="image">
+            <img id="preview" src="#" alt="Image Preview" style="display:none; margin-top: 15px; max-height: 200px; border-radius: 8px;" />
         </div>
 
         <!-- Calories -->
@@ -96,7 +97,30 @@
 
     /* Optional container background override */
     .container {
-        background-color: #FFF9C4;
+        background: lavender;
     }
 </style>
 @endsection
+
+@section('scripts')
+<script>
+    document.getElementById("image").addEventListener("change", function(event) {
+        const input = event.target;
+        const preview = document.getElementById("preview");
+        const file = input.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "#";
+            preview.style.display = "none";
+        }
+    });
+</script>
+@endsection
+
