@@ -52,7 +52,7 @@
             box-shadow: 0 0 10px rgba(16, 28, 12, 0.5);
         }
 
-        .role-btn:hover {
+        .role-btn:not(.active):hover {
             background-color: #dfe6e9;
         }
 

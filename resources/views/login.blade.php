@@ -8,6 +8,11 @@
         font-family: 'Poppins', sans-serif;
     }
 
+    textarea.form-control {
+    font-family: 'Poppins', sans-serif;
+    }
+
+
     .card {
         border-radius: 15px;
         background: #fff;
@@ -38,6 +43,7 @@
 
     .form-control {
         border-radius: 8px;
+        font-family: 'Poppins', sans-serif;
     }
 
     .form-control:focus {
@@ -74,11 +80,12 @@
 
         <h3 class="text-center mb-4" style="font-weight: 700; color: #101c0c;">Login to Your Account</h3>
 
-        <div class="d-flex justify-content-between mb-3">
+        <div class="d-flex justify-content-center gap-2 mb-3">
             <button type="button" class="btn role-btn active rounded-pill px-4" data-role="User" onclick="setRole(this)">Customer</button>
             <button type="button" class="btn role-btn rounded-pill px-4" data-role="Vendor" onclick="setRole(this)">Restaurant</button>
             <button type="button" class="btn role-btn rounded-pill px-4" data-role="Rider" onclick="setRole(this)">Runner</button>
         </div>
+
 
         <form action="{{ route('login') }}" method="POST">
             @csrf
